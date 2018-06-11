@@ -42,32 +42,41 @@ var Product = require ('./server/models/product'); // connect model script from 
 //     console.log(Products);
 // });
 
-// Product.find({category: 'Second Product'}).exec(function(err,Products){
+//Find and Show elements by category
+// Product.find({category: ['sushi','salad','pizza','drinks']}).exec(function(err,Products){
 //     console.log(Products);
 
 //  });
 
-  //DELETE 3 records fropm collection by id 
-Product.deleteMany([
-    {_id: '5b1d5c5c5f35737727fbf92b'},
-    {_id: '5b1d5c5c5f35737727fbf92f'},
-    {_id: '5b1d5c5c5f35737727fbf933'},
-])
-.exec(function(err){
-    console.log('Records has been deleted');
+//   DELETE 3 records fropm collection by id 
+//   var del_array = ['5b1e561201ef8164cf0921bf', '5b1e561201ef8164cf0921be', '5b1e561201ef8164cf0921bd'];
+//   Product.deleteMany({_id: del_array }).exec(function(err){
+//     console.log('deleted');
+// })
+
+
+ //Find and Update 
+Product.findById('5b1e561201ef8164cf0921b0').exec(function(err, Product){
+    Product.name = "Super Sushi";
+    Product.save(function(err, Products){
+        console.log('done');
+        console.log(Products);
+    });   
 });
-
-
-// //Update
-// Product.findById('5b1beb584aeffa2a3ae9370d').exec(function(err, Product){
-//     Product.description = "Update desc";
-//     Product.save(function(err, Products){
-//         console.log('done');
-//         console.log(Products);
-//     });
-   
-// });
-
+Product.findById('5b1e561201ef8164cf0921b4').exec(function(err, Product){
+    Product.name = "Ivan Grozny";
+    Product.save(function(err, Products){
+        console.log('done');
+        console.log(Products);
+    });   
+});
+Product.findById('5b1e561201ef8164cf0921b8').exec(function(err, Product){
+    Product.name = "Kazahk pizza";
+    Product.save(function(err, Products){
+        console.log('done');
+        console.log(Products);
+    });   
+});
 
 
 
