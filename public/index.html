@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en", ng-app="shop">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shop</title>
+    <!-- <link rel="stylesheet" href="style/main.css"> -->
+</head>
+<body ng-controller="adminCtrl as vm">
+    <form>
+        <h1>Для добавление продукта в базу заполните поля ниже!</h1>
+        <input type="text" ng-model="vm.productname" placeholder="Наименование продукта">
+        <input type="text" ng-model="vm.description" placeholder="Описание продукта">
+        <input type="text" ng-model="vm.category" placeholder="Категория продукта">
+        <input type="text" ng-model="vm.price" placeholder="Цена продукта">
+        <button ng-click="vm.save();">Save</button>
+    </form>
+    
+    <div ng-repeat="product in vm.products">
+
+        <p ng-bind="vm.productname"></h3>
+        <p ng-bind="vm.description"></p>
+        <p ng-bind="vm.category"></p>
+        <p ng-bind="vm.price"></p>
+        <hr>
+    </div>
+
+    <script src="js/vendor/ng.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+

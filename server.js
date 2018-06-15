@@ -1,7 +1,8 @@
 var express = require('express'); // connect express
 var logger = require('morgan'); // connect logging module morgan 
 var mongoose = require('mongoose');//connect moongose
-
+var path = require('path'); 
+var bodyParser = require('body-parser');
 
 var app = express();//set variable with name app to express framework
 
@@ -56,28 +57,32 @@ var Product = require ('./server/models/product'); // connect model script from 
 
 
  //Find and Update 
-Product.findById('5b1e561201ef8164cf0921b0').exec(function(err, Product){
-    Product.name = "Super Sushi";
-    Product.save(function(err, Products){
-        console.log('done');
-        console.log(Products);
-    });   
-});
-Product.findById('5b1e561201ef8164cf0921b4').exec(function(err, Product){
-    Product.name = "Ivan Grozny";
-    Product.save(function(err, Products){
-        console.log('done');
-        console.log(Products);
-    });   
-});
-Product.findById('5b1e561201ef8164cf0921b8').exec(function(err, Product){
-    Product.name = "Kazahk pizza";
-    Product.save(function(err, Products){
-        console.log('done');
-        console.log(Products);
-    });   
-});
+// Product.findById('5b1e561201ef8164cf0921b0').exec(function(err, Product){
+//     Product.name = "Super Sushi";
+//     Product.save(function(err, Products){
+//         console.log('done');
+//         console.log(Products);
+//     });   
+// });
+// Product.findById('5b1e561201ef8164cf0921b4').exec(function(err, Product){
+//     Product.name = "Ivan Grozny";
+//     Product.save(function(err, Products){
+//         console.log('done');
+//         console.log(Products);
+//     });   
+// });
+// Product.findById('5b1e561201ef8164cf0921b8').exec(function(err, Product){
+//     Product.name = "Kazahk pizza";
+//     Product.save(function(err, Products){
+//         console.log('done');
+//         console.log(Products);
+//     });   
+// });
 
+app.use(bodyParser.json({limit: '100mb'}));
+app.use(bodyParser.urlencoded({limit: '100mb',extended: true}));
+
+app.use(express.static(path.join(__dirname, 'public'), { maxAge :1}));//path to static file
 
 
 app.use(logger('dev'));
@@ -92,15 +97,34 @@ app.get('/', function(req, res, next){ //root route
 
 });
 
-app.get('/hello', function(req, res, next){ //route hello
-    console.log("Here2");
-    var message = {
-        msg: 'Hello Decode',
-        age: 21
-    }
-    res.status(200).send(message);
-
+app.get('/api/shop', function(req, res, next){ 
+    
+    Product.find().exec(function(err, product){
+        res.status(200).send(product);
+    });
 });
+app.post('/api/shop', function(req,res, next){
+    console.log(req.body); 
+    new Product ({
+        name: req.body.productname,
+        description :req.body.description,
+        category:req.body.category,
+        price:req.body.price
+
+    
+    }).save(function(err, product){
+        res.status (200).send(product);
+    })
+})
+// app.get('/hello', function(req, res, next){ //route hello
+//     console.log("Here2");
+//     var message = {
+//         msg: 'Hello Decode',
+//         age: 21
+//     }
+//     res.status(200).send(message);
+
+// });
 
 app.listen(process.env.PORT || 3000, function(){
    console.log("Server is a listening on port ", process.env.PORT || 3000) 

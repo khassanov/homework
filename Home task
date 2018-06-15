@@ -1,0 +1,25 @@
+Домашнее задание 2
+
+
+Скопировать ng.min.js в папку vendor и привязать её к index.html. 
+Создать новый файл в папке public и привязать её к index.html (название файла app.js )
+Написать контроллер в app.js (название контроллера AdminCtrl) 
+angular.module('decode')
+    .controller('AdminCtrl', AdminCtrl);
+
+    AdminCtrl.$inject = ['$http'];
+
+    function AdminCtrl($http) { 
+	//your code here
+}
+
+Подключить наш app в теге html (ng-app='decode')
+Привязать её на body (ng-controller = 'AdminCtrl  as vm')
+Создать GET API, который будет отправлять список всех продуктов. 
+	app.get(‘/api/products’, function(req, res, next){
+		// your code here
+})
+Сделать GET запрос наш только что созданный API и вывести результат на экран, используя $http.get() и console.log() 
+Отверстать таблицу для наших продуктов
+Показать результат нашего запроса в таблице (ng-repeat=”product in vm.products”)
+
