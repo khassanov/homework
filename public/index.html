@@ -10,12 +10,12 @@
 </head>
 <body ng-controller="adminCtrl as vm">
     <form>
-        <h2>Для добавление продукта в базу заполните поля ниже и нажмите кнопку save.</h2>
+        <h2>Для добавление продукта в базу заполните поля ниже и нажмите кнопку сохранить.</h2>
         <input type="text" ng-model="vm.name" placeholder="Наименование продукта">
         <input type="text" ng-model="vm.description" placeholder="Описание продукта">
         <input type="text" ng-model="vm.category" placeholder="Категория продукта">
         <input type="text" ng-model="vm.price" placeholder="Цена продукта">
-        <button ng-click="vm.save();">Save</button>
+        <button ng-click="vm.save(); "><img src="style/button.ico" width="40px" height="40px"></button>
     </form>
     <br>
     <table  id="shop">
