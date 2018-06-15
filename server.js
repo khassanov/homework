@@ -106,7 +106,7 @@ app.get('/api/shop', function(req, res, next){
 app.post('/api/shop', function(req,res, next){
     console.log(req.body); 
     new Product ({
-        name: req.body.productname,
+        name: req.body.name,
         description :req.body.description,
         category:req.body.category,
         price:req.body.price

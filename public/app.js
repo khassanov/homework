@@ -11,10 +11,10 @@ function adminCtrl($http) {
         console.log(data);
         })
 
-    //vm.name = 'shop';
+    vm.ngname = 'shop';
     
     vm.send = function(){
-        console.log(vm.name);
+        console.log(vm.ngname);
     }
 
     vm.save = function(){
