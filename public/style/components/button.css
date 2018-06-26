@@ -1,0 +1,19 @@
+.button {
+    height: 40px;
+    border-radius: 4px;
+    width: 100%;
+    cursor: pointer;
+    
+}
+.button.success {
+    background-color: #1ba3d6;
+    color: #fff;
+}
+
+.button.righted{
+    width: auto;
+    padding: 0px 20px;
+    position: absolute;
+    right: 30%;
+    left: 40%;
+}

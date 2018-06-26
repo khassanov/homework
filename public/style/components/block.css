@@ -1,0 +1,35 @@
+.main {
+    width: 100%;
+    min-height: calc(100vh - 60px);
+    display: flex;
+  
+    
+}
+.block {
+    background: #ffff;    
+}
+
+
+.block.large{
+    width: 100% ;
+   
+}
+
+.block.title{
+
+    height: 80px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+    line-height: 80px;
+    font-size: 20px;
+    text-transform: uppercase;
+    padding-left: 20px;
+}
+
+.formadd{
+    width: 100%;
+    padding: 30px 20% ;
+}
+.formadd h2{
+    text-align: center;
+}

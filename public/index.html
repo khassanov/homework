@@ -5,31 +5,184 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Shop</title>
-    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/all.css">
    
 </head>
 <body ng-controller="adminCtrl as vm">
-    <form>
-        <h2>Для добавление продукта в базу заполните поля ниже и нажмите кнопку сохранить.</h2>
-        <input type="text" ng-model="vm.name" placeholder="Наименование продукта">
-        <input type="text" ng-model="vm.description" placeholder="Описание продукта">
-        <input type="text" ng-model="vm.category" placeholder="Категория продукта">
-        <input type="text" ng-model="vm.price" placeholder="Цена продукта">
-        <button ng-click="vm.save(); "><img src="style/button.ico" width="40px" height="40px"></button>
-    </form>
-    <br>
-    <table  id="shop">
-    <tr ng-repeat="product in vm.products">
-        <td ng-bind="product.name"></td>
-        <td ng-bind="product.description"></td>
-        <td ng-bind="product.category"></td>
-        <td ng-bind="product.price"></tds>
-    </tr>
-        </table>
 
-    <script src="js/vendor/ng.min.js"></script>
-    <script src="app.js"></script>
-   
+    <!-- Header block -->
+    <header class="header">
+        <div class="header-logo">
+            <img src="images/logo.svg" >
+        </div>
+
+        <div class="header-tagline">
+            <h1>TezFood</h1>
+            <h2>Еда со скоростью света на дом</h2>
+        </div>
+
+        <div class="header-city">
+            Ваш город:
+            <b>Астана</b></div>  
+        </div>
+
+        
+    </header>
+    <!-- End of Header block -->
+
+    <!-- Edit -->
+    
+
+
+    <!-- Main block -->
+    <main class="main" ng-controller="adminCtrl as vm">
+    <div class="module" ng-if="vm.editModule">
+        <div class="module-backdrop" ng-click="vm.openEditModule()">
+        </div>
+        <div class="module-inner">
+            <div class="module-close" ng-click="vm.openEditModule()">
+                <img src="images/close.svg" class="module-close">
+            </div>
+            <div class="module-title">
+                Редактирование товара
+            </div>
+            <div class="module-form">
+                <form ng-submit="vm.updateShop()">
+                    <div class="form-field">
+                        <input ng-model="vm.editShop.name" type="text" class="input" name=""></input>
+                    </div>
+
+                    <div class="form-field">
+                        <input ng-model="vm.editShop.description" type="text" class="input"></input>
+                    </div>
+
+                    <div class="form-field">
+                        <input input ng-model="vm.editShop.category" type="text" class="input"></input>
+                    </div>
+
+                    <div class="form-field">
+                        <input  ng-model="vm.editShop.price" type="text" class="input"></input>
+                    </div>
+
+                    <div class="form-field">
+                        <input  ng-model="vm.editShop.img" type="file" class="input"></input>
+                    </div>
+
+                    <div class="form-field">
+                            <button class="button success" type="submit"> Save</button>
+                    </div>
+
+                </form>    
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="block large"> 
+            <div class="module" ng-if="vm.addModule">
+                    <div class="module-backdrop" ng-click="vm.addModule()">
+                    </div>
+                    <div class="module-inner">
+                        <div class="module-close" ng-click="vm.addModule()">
+                            <img src="images/close.svg" class="module-close">
+                        </div>
+                        <div class="module-title">
+                            Добавление товара
+                        </div>
+                        <div class="module-form">
+                            <form ng-submit="vm.updateShop()">
+                                <div class="form-field">
+                                        <input type="text" ng-model="vm.name" placeholder="Наименование продукта"></input>
+                                </div>
+            
+                                <div class="form-field">
+                                        <input type="text" ng-model="vm.description" placeholder="Описание продукта"></input>
+                                </div>
+            
+                                <div class="form-field">
+                                        <input type="text" ng-model="vm.category" placeholder="Категория продукта"></input>
+                                </div>
+            
+                                <div class="form-field">
+                                        <input type="text" ng-model="vm.price" placeholder="Цена продукта">
+                                </div>
+            
+                                <div class="form-field">
+                                        <select ng-model="vm.img" ng-options="img for img in vm.images">
+                                                <option s>Выберите изображение товара</option>
+                                            </select>
+                                </div>
+            
+                                <div class="form-field">
+                                        <button ng-click="vm.save(); ">
+                                                <img src="/images/checked.svg" width="30px" height="30px">
+                                            </button>
+                                </div>
+            
+                            </form>    
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+        <!-- <button class="button success righted" ng-click="">
+            Добавить товар в базу
+        </button>
+        <form class="formadd" ng-show="formVisible()">               
+            <input type="text" ng-model="vm.name" placeholder="Наименование продукта">
+            <input type="text" ng-model="vm.description" placeholder="Описание продукта">
+            <input type="text" ng-model="vm.category" placeholder="Категория продукта">
+            <input type="text" ng-model="vm.price" placeholder="Цена продукта">
+            <select ng-model="vm.img" ng-options="img for img in vm.images">
+                <option s>Выберите изображение товара</option>
+            </select>
+
+            <button ng-click="vm.save(); ">
+                <img src="/images/checked.svg" width="30px" height="30px">
+            </button>
+        </form> -->
+
+        <div class="grid">
+            <div class="grid-item" ng-repeat="Product in vm.products">
+                <div class="grid-editor">
+                    <span ng-click="vm.openEditModule(Product)">
+                        <img src="images/edit.svg" alt="">
+                    </span>
+                    <span ng-click="vm.deleteGoods(Product)">
+                        <img src="images/trash.svg" alt="">
+                    </span>
+                </div>
+
+                <span></span>
+                <img class="grid-item--image" ng-src="{{Product.img}}">
+                </span>
+                <span class="grid-item--name" ng-bind="Product.name"></span>
+                <span class="grid-item--description" ng-bind="Product.description">discription</span>
+                <span class="grid-item--category" ng-bind="Product.category"></span>
+                <span class="grid-item--price" ng-bind="Product.price"></span>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    </div>
+    </main>
+    <!-- End of Main block -->
+
+        <script src="js/vendor/ng.min.js"></script>
+        <script src="app.js"></script>
+    
 </body>
 </html>
 
