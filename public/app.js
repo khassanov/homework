@@ -32,22 +32,49 @@ function adminCtrl($http) {
     }
 
 
+    vm.addModule = false; 
+    vm.openAddModule = function () {
+        if(vm.name!=''&&vm.description!=''&&vm.category!=''&&vm.price!=''&&vm.img!=''){
+            vm.addModule = true;
+            vm.save = function () {
+                console.log('Here', vm.name, vm.description, vm.category, vm.price, vm.img);
+                var obj = {
+                    name: vm.name,
+                    description: vm.description,
+                    category: vm.category,
+                    price: vm.price,
+                    img: vm.img
+                };
+                vm.images = {
+                    pizza: './images/pizza.svg',
+                    drinks: './images/drinks.svg',
+                    salad: './images/salads.svg',
+                    sushi: './images/sushi.svg'
+                };
+            
+                vm.getImg = function (img) {
+                    img = vm.images;
+                    return vm.img;
+            
+                }
+                $http.post('api/shop', obj).success(function (data) {
+                    vm.products.push(data);
+                    console.log(data);
+                    vm.addModule = false;
 
-    vm.save = function () {
-        console.log('Here', vm.name, vm.description, vm.category, vm.price, vm.img);
-        var obj = {
-            name: vm.name,
-            description: vm.description,
-            category: vm.category,
-            price: vm.price,
-            img: vm.img
-        };
-        $http.post('api/shop', obj).success(function (data) {
-            vm.products.push(data);
-            console.log(data);
-        }) //1 аргумент куда, 2 аргумент что передаем
+                }) //1 аргумент куда, 2 аргумент что передаем
+                
+            }   
+            
+           
+        }
+        else {
+            vm.addModule = false;
+
+        } 
 
     }
+    
 
 
     vm.deleteGoods = function (delgoods) {

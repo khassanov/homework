@@ -78,19 +78,26 @@
         </div>
     </div>
 
-    <div class="block large"> 
-            <div class="module" ng-if="vm.addModule">
-                    <div class="module-backdrop" ng-click="vm.addModule()">
+    <div class="block large"  > 
+            <button class="button success righted" ng-click="vm.openAddModule();"  >
+                    Добавить товар в базу
+                </button>
+
+            <div class="module" ng-if="vm.addModule;" > 
+                    
+                   
+                    <div class="module-backdrop" ng-click="vm.openAddModule();">
                     </div>
                     <div class="module-inner">
-                        <div class="module-close" ng-click="vm.addModule()">
+                        <div class="module-close" ng-click="vm.openAddModule();">
                             <img src="images/close.svg" class="module-close">
                         </div>
                         <div class="module-title">
                             Добавление товара
                         </div>
                         <div class="module-form">
-                            <form ng-submit="vm.updateShop()">
+                            <!-- <form ng-submit="vm.updateShop()"> -->
+                                <form>
                                 <div class="form-field">
                                         <input type="text" ng-model="vm.name" placeholder="Наименование продукта"></input>
                                 </div>
@@ -104,7 +111,7 @@
                                 </div>
             
                                 <div class="form-field">
-                                        <input type="text" ng-model="vm.price" placeholder="Цена продукта">
+                                        <input type="text" ng-model="vm.price" placeholder="Цена продукта"></input>
                                 </div>
             
                                 <div class="form-field">
@@ -114,8 +121,8 @@
                                 </div>
             
                                 <div class="form-field">
-                                        <button ng-click="vm.save(); ">
-                                                <img src="/images/checked.svg" width="30px" height="30px">
+                                        <button ng-click="vm.save();" >
+                                                <img src="/images/checked.svg" width="30px" height="30px" >
                                             </button>
                                 </div>
             
